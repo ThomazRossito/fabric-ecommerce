@@ -1,0 +1,105 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "notebook_orchestrator_medallion - TARN_DEV",
+        "type": "TridentNotebook",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Wait2",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ],
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "650d4ba6-e973-4bbe-a518-fc8a13025169",
+          "workspaceId": "e1e7a468-d318-49d0-b238-287c09020d88"
+        }
+      },
+      {
+        "name": "notebook_generate_mock_data - TARN_DEV",
+        "type": "TridentNotebook",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Wait1",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ],
+        "policy": {
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "64a4d45d-20c2-4598-8de8-b8036d1eac88",
+          "workspaceId": "e1e7a468-d318-49d0-b238-287c09020d88"
+        }
+      },
+      {
+        "name": "Clean Env - TARN_DEV",
+        "type": "TridentNotebook",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [],
+        "policy": {
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "e02bd8c7-b0c7-4413-abd7-9e07f102c0ee",
+          "workspaceId": "e1e7a468-d318-49d0-b238-287c09020d88"
+        }
+      },
+      {
+        "name": "Wait1",
+        "type": "Wait",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Clean Env - TARN_DEV",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "waitTimeInSeconds": 20
+        }
+      },
+      {
+        "name": "Wait2",
+        "type": "Wait",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "notebook_generate_mock_data - TARN_DEV",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "waitTimeInSeconds": 20
+        }
+      }
+    ]
+  }
+}

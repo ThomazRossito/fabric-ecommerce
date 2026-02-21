@@ -1,0 +1,150 @@
+table vw_monitoramento_powerbi
+	lineageTag: 0e58b135-6576-4b30-8d58-a30f71ca581e
+	sourceLineageTag: [monitoramento].[vw_monitoramento_powerbi]
+
+	column run_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c59199b0-a13b-4d75-92a3-517a42fa6a6f
+		sourceLineageTag: run_id
+		summarizeBy: none
+		sourceColumn: run_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_notebook
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2e1f2a82-c3ca-476b-b9a0-fe5fad382b2f
+		sourceLineageTag: nome_notebook
+		summarizeBy: none
+		sourceColumn: nome_notebook
+
+		annotation SummarizationSetBy = Automatic
+
+	column camada
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 93a81cd4-621e-44e2-85f3-7c07d1c1caf6
+		sourceLineageTag: camada
+		summarizeBy: none
+		sourceColumn: camada
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 56068372-f823-47ed-bb3a-c462a3ef70ef
+		sourceLineageTag: status
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column sucesso
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 9c62151b-5ca4-4494-a9a0-d192ed11e32b
+		sourceLineageTag: sucesso
+		summarizeBy: none
+		sourceColumn: sucesso
+
+		annotation SummarizationSetBy = Automatic
+
+	column registros_processados
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: df7cf562-82ab-41a4-9e23-959fefbb7e41
+		sourceLineageTag: registros_processados
+		summarizeBy: sum
+		sourceColumn: registros_processados
+
+		annotation SummarizationSetBy = Automatic
+
+	column duracao_segundos
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 6f9dadb8-e5b5-4086-8706-f72476bd65e4
+		sourceLineageTag: duracao_segundos
+		summarizeBy: sum
+		sourceColumn: duracao_segundos
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mensagem_erro
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c540cc55-8181-4283-94ed-cb18fa88945e
+		sourceLineageTag: mensagem_erro
+		summarizeBy: none
+		sourceColumn: mensagem_erro
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_hora_execucao
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 57554a45-ae2f-40fd-995b-28cfb5f851b8
+		sourceLineageTag: data_hora_execucao
+		summarizeBy: none
+		sourceColumn: data_hora_execucao
+
+		annotation SummarizationSetBy = Automatic
+
+	column hex_color_status
+		dataType: string
+		sourceProviderType: varchar(7)
+		lineageTag: d536dbd0-311b-4ea5-8982-d766cc013c83
+		sourceLineageTag: hex_color_status
+		summarizeBy: none
+		sourceColumn: hex_color_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column duracao_formatada
+		dataType: string
+		sourceProviderType: varchar(63)
+		lineageTag: 203f77e3-f566-4724-a01f-f7641438d5a1
+		sourceLineageTag: duracao_formatada
+		summarizeBy: none
+		sourceColumn: duracao_formatada
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_execucao
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 1adfa57b-1fb7-4735-8c86-a01566ad3792
+		sourceLineageTag: data_execucao
+		summarizeBy: none
+		sourceColumn: data_execucao
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora_execucao
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: time
+		lineageTag: 407cae59-8122-49aa-b341-30d1ede12946
+		sourceLineageTag: hora_execucao
+		summarizeBy: none
+		sourceColumn: hora_execucao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_monitoramento_powerbi = entity
+		mode: directLake
+		source
+			entityName: vw_monitoramento_powerbi
+			schemaName: monitoramento
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
