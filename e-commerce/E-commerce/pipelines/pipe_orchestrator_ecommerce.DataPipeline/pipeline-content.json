@@ -2,10 +2,18 @@
   "properties": {
     "activities": [
       {
-        "name": "notebook_orchestrator_medallion - TARN_DEV",
         "type": "TridentNotebook",
-        "state": "Inactive",
-        "onInactiveMarkAs": "Succeeded",
+        "typeProperties": {
+          "notebookId": "13025169-fc8a-a518-4bbe-e973650d4ba6",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "notebook_orchestrator_medallion - TARN_DEV",
         "dependsOn": [
           {
             "activity": "Wait2",
@@ -13,21 +21,21 @@
               "Completed"
             ]
           }
-        ],
-        "policy": {
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "typeProperties": {
-          "notebookId": "650d4ba6-e973-4bbe-a518-fc8a13025169",
-          "workspaceId": "e1e7a468-d318-49d0-b238-287c09020d88"
-        }
+        ]
       },
       {
-        "name": "notebook_generate_mock_data - TARN_DEV",
         "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "64a4d45d-20c2-4598-8de8-b8036d1eac88",
+          "workspaceId": "e1e7a468-d318-49d0-b238-287c09020d88"
+        },
+        "policy": {
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "notebook_generate_mock_data - TARN_DEV",
         "state": "Inactive",
         "onInactiveMarkAs": "Succeeded",
         "dependsOn": [
@@ -37,38 +45,31 @@
               "Completed"
             ]
           }
-        ],
-        "policy": {
-          "retry": 1,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "typeProperties": {
-          "notebookId": "64a4d45d-20c2-4598-8de8-b8036d1eac88",
-          "workspaceId": "e1e7a468-d318-49d0-b238-287c09020d88"
-        }
+        ]
       },
       {
-        "name": "Clean Env - TARN_DEV",
         "type": "TridentNotebook",
-        "state": "Inactive",
-        "onInactiveMarkAs": "Succeeded",
-        "dependsOn": [],
-        "policy": {
-          "retry": 1,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
         "typeProperties": {
           "notebookId": "e02bd8c7-b0c7-4413-abd7-9e07f102c0ee",
           "workspaceId": "e1e7a468-d318-49d0-b238-287c09020d88"
-        }
+        },
+        "policy": {
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Clean Env - TARN_DEV",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
       },
       {
-        "name": "Wait1",
         "type": "Wait",
+        "typeProperties": {
+          "waitTimeInSeconds": 20
+        },
+        "name": "Wait1",
         "state": "Inactive",
         "onInactiveMarkAs": "Succeeded",
         "dependsOn": [
@@ -78,14 +79,14 @@
               "Completed"
             ]
           }
-        ],
-        "typeProperties": {
-          "waitTimeInSeconds": 20
-        }
+        ]
       },
       {
-        "name": "Wait2",
         "type": "Wait",
+        "typeProperties": {
+          "waitTimeInSeconds": 20
+        },
+        "name": "Wait2",
         "state": "Inactive",
         "onInactiveMarkAs": "Succeeded",
         "dependsOn": [
@@ -95,10 +96,7 @@
               "Completed"
             ]
           }
-        ],
-        "typeProperties": {
-          "waitTimeInSeconds": 20
-        }
+        ]
       }
     ]
   }
